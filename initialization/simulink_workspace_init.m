@@ -2,7 +2,7 @@ init= struct();
 init= phys_properties(init);
 init= init_orbit_and_time(init);
 init= init_attitude(init);
-
+init= sensor_prop(init);
 
 %GNC Initializations
 muE= init.Earth.mu; %gravitational parameter for the earth
