@@ -24,7 +24,7 @@ init.FWR.V = v_FWR;     % Vx Vy Vz
 init.errorflag = 'Error';
 init.deltaT = 'sec';
 
-% Start Date
+% Start Date UTC
 init.year= 2018;
 init.month= 6;
 init.day= 15;
@@ -35,6 +35,8 @@ Y= init.year;
 M= init.month;
 D= init.day;
 init.JD= (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075;
+init.GPSTime= 1213056018;
+%seconds, using https://losc.ligo.org/gps/
 
 dataIn= double('1201,20304!1202,302350!1301,12352!');
 dataArray= [12 32 2124.6 1234 12314 5 6 5 4 3 6 7 8 9 23];
