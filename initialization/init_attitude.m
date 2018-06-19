@@ -13,7 +13,7 @@ init.FWR.wbn=[0 0 -0.001]';
 init.FWR.q_init=[0 0 0 1]';
 %init.FWR.q_ref=[0 0 0 1]';
 
-init.LDR.wbn=pi/100*[0 0 0]';
+init.LDR.wbn=pi/100*[1 0 0]';
 init.LDR.w_ref=pi/30*[0 0 0];
 %init.LDR.q_init=[0 0 0 1]';
 init.LDR.q_ref=[0 0 0 1]';
