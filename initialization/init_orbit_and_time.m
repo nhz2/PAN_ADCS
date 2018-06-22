@@ -36,6 +36,7 @@ M= init.month;
 D= init.day;
 init.JD= (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075;
 init.GPSTime= 1213056018;
+init.decyear= decyear(Y,M,D);
 %seconds, using https://losc.ligo.org/gps/
 
 dataIn= double('1201,20304!1202,302350!1301,12352!');
