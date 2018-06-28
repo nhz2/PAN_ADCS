@@ -65,10 +65,10 @@
 
 typedef struct {
     const double epoch;
-    const double Main_Field_Coeff_G[MAG_NUMCOF];
-    const double Main_Field_Coeff_H[MAG_NUMCOF];
-    const double Secular_Var_Coeff_G[MAG_NUMSECCOF];
-    const double Secular_Var_Coeff_H[MAG_NUMSECCOF];
+    const float Main_Field_Coeff_G[MAG_NUMCOF];
+    const float Main_Field_Coeff_H[MAG_NUMCOF];
+    const float Secular_Var_Coeff_G[MAG_NUMSECCOF];
+    const float Secular_Var_Coeff_H[MAG_NUMSECCOF];
 } MAGtype_ConstModel;
 
 

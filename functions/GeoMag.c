@@ -385,7 +385,7 @@ int MAG_TimelyModifyMagneticModel(double dyear, MAGtype_ConstModel *MagneticMode
 {
     int n, m, index, a, b;
     //TimedMagneticModel->EditionDate = MagneticModel->EditionDate;
-    TimedMagneticModel->epoch = MagneticModel->epoch;
+    TimedMagneticModel->epoch = (double) MagneticModel->epoch;
     TimedMagneticModel->nMax = NMAX;
     TimedMagneticModel->nMaxSecVar = NMAXSECVAR;
     a = TimedMagneticModel->nMaxSecVar;
@@ -398,14 +398,14 @@ int MAG_TimelyModifyMagneticModel(double dyear, MAGtype_ConstModel *MagneticMode
             index = (n * (n + 1) / 2 + m);
             if(index <= b)
             {
-                TimedMagneticModel->Main_Field_Coeff_H[index] = MagneticModel->Main_Field_Coeff_H[index] + (dyear - MagneticModel->epoch) * MagneticModel->Secular_Var_Coeff_H[index];
-                TimedMagneticModel->Main_Field_Coeff_G[index] = MagneticModel->Main_Field_Coeff_G[index] + (dyear - MagneticModel->epoch) * MagneticModel->Secular_Var_Coeff_G[index];
-                TimedMagneticModel->Secular_Var_Coeff_H[index] = MagneticModel->Secular_Var_Coeff_H[index]; /* We need a copy of the secular var coef to calculate secular change */
-                TimedMagneticModel->Secular_Var_Coeff_G[index] = MagneticModel->Secular_Var_Coeff_G[index];
+                TimedMagneticModel->Main_Field_Coeff_H[index] = (double)MagneticModel->Main_Field_Coeff_H[index] + (dyear -  MagneticModel->epoch) * (double)MagneticModel->Secular_Var_Coeff_H[index];
+                TimedMagneticModel->Main_Field_Coeff_G[index] = (double)MagneticModel->Main_Field_Coeff_G[index] + (dyear - MagneticModel->epoch) * (double)MagneticModel->Secular_Var_Coeff_G[index];
+                TimedMagneticModel->Secular_Var_Coeff_H[index] = (double)MagneticModel->Secular_Var_Coeff_H[index]; /* We need a copy of the secular var coef to calculate secular change */
+                TimedMagneticModel->Secular_Var_Coeff_G[index] = (double)MagneticModel->Secular_Var_Coeff_G[index];
             } else
             {
-                TimedMagneticModel->Main_Field_Coeff_H[index] = MagneticModel->Main_Field_Coeff_H[index];
-                TimedMagneticModel->Main_Field_Coeff_G[index] = MagneticModel->Main_Field_Coeff_G[index];
+                TimedMagneticModel->Main_Field_Coeff_H[index] = (double)MagneticModel->Main_Field_Coeff_H[index];
+                TimedMagneticModel->Main_Field_Coeff_G[index] = (double)MagneticModel->Main_Field_Coeff_G[index];
             }
         }
     }
