@@ -40,11 +40,6 @@ init.decyear= decyear(Y,M,D);
 %seconds, using https://losc.ligo.org/gps/
 
 %Sun earth orbit init constants 
-%https://en.wikipedia.org/wiki/Earth%27s_orbit
-init.S_axialtilt= 23.43689*pi/180.0; 
-%radians see https://en.wikipedia.org/wiki/Axial_tilt
-init.S_eqangle= 1.459420149;
-%init angle of earth from equaniox 
 init.S_T= 365.256363004*86400.0;
 %earths orbital period units s
 init.S_e= 0.0167086;
@@ -52,11 +47,14 @@ init.S_e= 0.0167086;
 init.S_tp= (juliandate(2018,1,3,5,35,0)- init.JD)*86400.0;
 %delta time when earth is at perihelion units s
 %http://aa.usno.navy.mil/seasons?year=2018&tz=+0
-r= planetEphemeris(juliandate(2018,1,3,5,35,0),'Sun','Earth','421','AU');
-r= r/sqrt(dot(r,r));
-init.S_anomeq= acos(r(1));
-%true anomoly of earth at equoniox, when sun to earth
-%vector is parrallel to  (1, 0, 0)ICRS units rad
+x= planetEphemeris(juliandate(2018,1,3,5,35,0),'Sun','Earth','421','AU');
+x= x/sqrt(dot(x,x));
+p= planetEphemeris(juliandate(2018,3,3,5,35,0),'Sun','Earth','421','AU');
+p= p/sqrt(dot(p,p));
+z= cross(x,p);
+z= z/sqrt(dot(z,z));
+init.S_q= TRIAD([0; 0; 1],[1; 0; 0],z.',x.');
+%quaternion to rotate from Sun to ICRF
 
 
 dataIn= double('1201,20304!1202,302350!1301,12352!');
