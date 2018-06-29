@@ -5,7 +5,7 @@ function S= refSun(t,angle0,tilt,yearT)%#codegen
 %   t(positive double): delta time in seconds
 %   
 %   
-S=[cos(2*pi*t/yearT+angle0)+0.015*sin(4*pi*t/yearT)+0.01*cos(2*pi*t/yearT)-0.01*cos(4*pi*t/yearT)-0.005; sin(2*pi*t/yearT+angle0)*cos(tilt); sin(2*pi*t/yearT+angle0)*sin(tilt)];
+S=[cos(2*pi*t/yearT+angle0); sin(2*pi*t/yearT+angle0)*cos(tilt); sin(2*pi*t/yearT+angle0)*sin(tilt)];
     
 
 
