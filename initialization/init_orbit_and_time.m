@@ -34,10 +34,30 @@ init.sec= 0;
 Y= init.year;
 M= init.month;
 D= init.day;
-init.JD= (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075;
+init.JD= juliandate(Y,M,D,init.hour,init.min,init.sec);
 init.GPSTime= 1213056018;
 init.decyear= decyear(Y,M,D);
 %seconds, using https://losc.ligo.org/gps/
+
+%Sun earth orbit init constants 
+%https://en.wikipedia.org/wiki/Earth%27s_orbit
+init.S_axialtilt= 23.43689*pi/180.0; 
+%radians see https://en.wikipedia.org/wiki/Axial_tilt
+init.S_eqangle= 1.459420149;
+%init angle of earth from equaniox 
+init.S_T= 365.256363004*86400.0;
+%earths orbital period units s
+init.S_e= 0.0167086;
+%earths orbital eccentricity
+init.S_tp= (juliandate(2018,1,3,5,35,0)- init.JD)*86400.0;
+%delta time when earth is at perihelion units s
+%http://aa.usno.navy.mil/seasons?year=2018&tz=+0
+r= planetEphemeris(juliandate(2018,1,3,5,35,0),'Sun','Earth','421','AU');
+r= r/sqrt(dot(r,r));
+init.S_anomeq= acos(r(1));
+%true anomoly of earth at equoniox, when sun to earth
+%vector is parrallel to  (1, 0, 0)ICRS units rad
+
 
 dataIn= double('1201,20304!1202,302350!1301,12352!');
 dataArray= [12 32 2124.6 1234 12314 5 6 5 4 3 6 7 8 9 23];
