@@ -6,7 +6,10 @@ function S= refSunK(t,tp,yearT,e,q)%#codegen
 %       seconds
 %   yearT(positive double): earths orbital period in seconds
 %   e(positive double): eccentricity of earths orbit
-%   q(quaterinion): quaternion to rotate from Sun to ICRF
+%   q(quaterinion): quaternion to rotate from SUN to ICRF,
+%                   SUN is a frame with
+%                        z axis normal to earths orbital plane 
+%                        x axis vector from sun to perihelion
 %TODO use custom quat library
 %   
 %   
@@ -14,8 +17,7 @@ function S= refSunK(t,tp,yearT,e,q)%#codegen
 M= 2*pi*(t-tp)/yearT;
 % find E in rads using fixed point iteration see
 % https://en.wikipedia.org/wiki/Kepler%27s_equation
-E= M;
-E= M+e*sin(E);
+E= M+e*sin(M);
 % for n= 0:100
 %     E= M+e*sin(E);
 % end
