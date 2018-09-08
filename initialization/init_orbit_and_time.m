@@ -24,7 +24,7 @@ init.FWR.V = v_FWR;     % Vx Vy Vz
 init.errorflag = 'Error';
 init.deltaT = 'sec';
 
-% Start Date UTC
+% Start Date UTC, don't change this without changing the ecef to eci blocks
 init.year= 2018;
 init.month= 6;
 init.day= 15;
