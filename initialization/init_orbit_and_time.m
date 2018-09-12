@@ -17,6 +17,8 @@ init.time= 0;
 %init.LDR.V = [0 7.678477071156148e+03 0]';     % Vx Vy Vz
 init.LDR.P = r_LDR;
 init.LDR.V = v_LDR;
+init.LDR.H = cross(r_LDR,v_LDR); %angular momuntum/mass in ECI units m^2/s
+%https://en.wikipedia.org/wiki/Angular_momentum
 
 init.FWR.P = r_FWR;   % Px Py Pz [m]
 init.FWR.V = v_FWR;     % Vx Vy Vz
