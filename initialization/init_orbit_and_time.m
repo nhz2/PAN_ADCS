@@ -20,6 +20,7 @@ init.LDR.V = v_LDR;
 init.LDR.H = cross(r_LDR,v_LDR); %angular momuntum/mass in ECI units m^2/s
 %https://en.wikipedia.org/wiki/Angular_momentum
 
+
 init.FWR.P = r_FWR;   % Px Py Pz [m]
 init.FWR.V = v_FWR;     % Vx Vy Vz
 
@@ -27,9 +28,9 @@ init.errorflag = 'Error';
 init.deltaT = 'sec';
 
 % Start Date UTC, don't change this without changing the ecef to eci blocks
-init.year= 2018;
-init.month= 6;
-init.day= 15;
+init.year= 2017;
+init.month= 10;
+init.day= 20;
 init.hour= 0;
 init.min= 0;
 init.sec= 0;
