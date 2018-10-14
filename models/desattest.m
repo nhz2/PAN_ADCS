@@ -12,14 +12,14 @@
 %Constants
 HMAG= 0.00675; % magnitude of initial angular momentum of the sat 
 %with respect to sat center of mass, units kg*m^2/s
-RMIN= 6771000; %minimum orbital radius, units m
-RMAX= 6771000; %maximum orbital radius, units m
-INCLMIN= 0.9; %minimum orbital inclination, units radians
-INCLMAX= 0.9; %maximum orbital inclination, units radians
+RMIN= 6571000; %minimum orbital radius, units m
+RMAX= 6871000; %maximum orbital radius, units m
+INCLMIN= pi*; %minimum orbital inclination, units radians
+INCLMAX= pi; %maximum orbital inclination, units radians
 MOMENT= 0.08; %magnetic moment mag, units A*m^2
 TIMEMAX= 24*3600;%inital starting time of the simulation, units seconds
-N= 10; %number of simulations to run
-
+N= 100; %number of simulations to run
+%ATTITUDE= [0;0;0;1];
 
 
 %model parameters to vary

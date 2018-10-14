@@ -19,6 +19,29 @@ init.I=[1/12*m*(0.3^2+0.1^2) 0 0
 init.invI=inv(init.I);
 init.c=100;
 
+%Aerodynamic/Solar Properties
+init.Cd= 2.0;
+%drag coefficient
+%faces +x,-x,+y,-y,+z,-z 
+init.areas= [0.03 0.03 0.03 0.03 0.01 0.01];
+%areas([1, N]  vector): areas of the planes, units m^2
+init.unitnormals= [ 1 -1 0  0 0  0
+                    0  0 1 -1 0  0
+                    0  0 0  0 1 -1];
+%unitnormals([3, N]  vectors): normalzed unit vectors of planes
+%   these point out of the plane into space, in body frame
+init.comtocops= [ 5 -5 0  0  0   0
+                  0  0 5 -5  0   0
+                  0  0 0  0 10 -10]*0.01;
+%comtocops([3, N]  vectors): vector distance from center of
+%   mass to center of pressure of each plane, units m, in body frame
+init.rss= [.4 .4 .4 .4 .4 .4];
+%rss([1, N]  vector): surface specular reflectance coefficients.
+init.rds= [.4 .4 .4 .4 .4 .4];
+%rds([1, N]  vector): surface diffuse reflectance coefficients.
+
+
+
 % RWA Properties (Maxon EC 45 Flat 50W 24V)
 init.rpmmax= 10000;      % Nominal speed
 init.RWA_I= 135*1e-7;        % Rotor Inertia
