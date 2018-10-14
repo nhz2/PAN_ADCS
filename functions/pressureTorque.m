@@ -24,18 +24,19 @@ function [force,torque] = pressureTorque(pressure,unitvelocity,areas,unitnormals
 %       rds([1, N]  vector): surface diffuse reflectance coefficients.
 %           0 for air.
 N= length(areas);
-assert(isequal(size(unitvelocity),[3 1]),"bad dimesions");
-assert(isequal(size(comtocops),size(unitnormals),[3 N]),"bad dimesions");
-assert(isequal(size(areas),size(rss),size(rds),[1 N]),"bad dimesions");
+assert(isequal(size(unitvelocity),[3 1]),"bad dimesions 1");
+assert(isequal(size(comtocops),size(unitnormals),[3 N]),"bad dimesions 2");
+assert(isequal(length(areas),length(rss),length(rds),N),"bad dimesions 3");
 force= [ 0; 0; 0;];
+f= [ 0; 0; 0;];
 torque= [ 0; 0; 0;];
 for i = 1:N
-    d= dot(unitnormals(i),unitvelocity);
+    d= dot(unitnormals(:,i),unitvelocity);
     if d>=0
         continue;
     end
-    f= d*pressure*areas(i)*((2*rss(i)+2/3*rds(i))*unitnormals(i)+(rss(i)-1)*unitvelocity);
+    f= d*pressure*areas(i)*((2*rss(i)+2/3*rds(i))*unitnormals(:,i)+(rss(i)-1)*unitvelocity);
     force= force+f;
-    torque= torque+ cross(comtocops(i),f);  
+    torque= torque+ cross(comtocops(:,i),f);  
 end
 end
