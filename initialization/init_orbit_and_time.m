@@ -2,8 +2,8 @@ function init= init_orbit_and_time(init)
 a= 6760636.6;   % semimajor axis
 e= 0;           % eccentricity
 p= a*(1-e);     % semilatus rectum
-i_LDR= 0.01*pi/180;   % inclination angle
-i_FWR= 0*pi/180;   % inclination angle
+i_LDR= 50*pi/180;   % inclination angle
+i_FWR= 50*pi/180;   % inclination angle
 O=0;            % right ascension of the ascending node (longitude)
 o=0;            % Argument of Perigee
 nu_LDR=5*pi/180;           % True anamoly
@@ -39,8 +39,18 @@ M= init.month;
 D= init.day;
 init.JD= juliandate(Y,M,D,init.hour,init.min,init.sec);
 init.GPSTime= 1213056018;
-init.decyear= decyear(Y,M,D);
 %seconds, using https://losc.ligo.org/gps/
+init.decyear= decyear(Y,M,D);
+init.DCM_ECI2ECEF=dcmeci2ecef('IAU-2000/2006',[Y M D init.hour init.min init.sec]);
+q0= dcm2quat(init.DCM_ECI2ECEF);
+init.q0= q0;
+%qa= dcm2quat(dcmeci2ecef('IAU-2000/2006',[Y M D mod(12+init.hour,24) init.min init.sec]));
+%q0conj= quatconj(q0);
+%qt= quatmultiply(qa,q0conj);
+%init.EARTH_AXIS= [qt(2) qt(3) qt(4)];
+init.QUAT_ECI2ECEF= [q0(2) q0(3) q0(4) q0(1)];
+%init.GMST= atan2(init.DCM_ECI2ECEF(1,2),init.DCM_ECI2ECEF(1,1));
+%initial Greenwich Mean Sidereal Time, units radians
 
 %Sun earth orbit init constants 
 init.S_T= 365.256363004*86400.0;

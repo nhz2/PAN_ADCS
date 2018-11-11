@@ -42,23 +42,12 @@ init.rds= [.4 .4 .4 .4 .4 .4];
 
 
 
-% RWA Properties (Maxon EC 45 Flat 50W 24V)
-init.rpmmax= 10000;      % Nominal speed
-init.RWA_I= 135*1e-7;        % Rotor Inertia
-%init.hmax=  init.RWA_I*init.rpmmax/60;  % Maximum angular momentum of the wheels
-% 2.25e-3
-% init.hdmax= [83.4e-3;   % Maximum angular momentum change of the wheels
-%             83.4e-3;
-%             83.4e-3];        
-init.hmax= 1e12;
-init.hdmax= [1000 1000 1000]';
-
-init.RWA.invI=inv(init.RWA_I);
-%0 to 30rpm deadband -> desired rpm at 10000/2 = 5000 rpm
-%-> 5000/60 = 83.3 rad/s -> desired angular momentum = Iw = 135e-7*83.3 =
-%1.125e-3
-init.h_des= [1.125e-3;1.125e-3;1.125e-3];
+% Wheel Properties (Maxon EC 45 Flat 50W 24V)
+init.ratemax= 677.0;      % Maximum speed rad/s
+init.rampmax= 304.5;        %Maximum ramp in rad/s/s
+init.wheel_I= 135*1e-7;        % Rotor Inertia kg*m^2
+init.ratedes= 50.0;     %Desired wheel speed (rad/s)
 
 %Magnetic torquer
-init.m_mt= 0.8; %Am^2
+init.m_mt= 0.08; %Am^2 Maximum moment of a single rod
 
