@@ -37,7 +37,7 @@ ontime_max = 1;
 
 % impulse per pulse range for thrusters in Ns
 % Imp_range=[Thrust_min*ontime_min Thrust_max*ontime_max];
-Imp_range = [1e-4 5];     
+Imp_range = [4.9e-5 5.8e-3];     
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time parameters                                                         %

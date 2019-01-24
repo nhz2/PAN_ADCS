@@ -1,12 +1,12 @@
 function init= init_orbit_and_time(init)
-a= 6760636.6;   % semimajor axis
-e= 0;           % eccentricity
+a= 6860636.6;   % semimajor axis
+e= 0.001;           % eccentricity
 p= a*(1-e);     % semilatus rectum
-i_LDR= 50*pi/180;   % inclination angle
-i_FWR= 50*pi/180;   % inclination angle
+i_LDR= 45*pi/180;   % inclination angle
+i_FWR= 45*pi/180;   % inclination angle
 O=0;            % right ascension of the ascending node (longitude)
 o=0;            % Argument of Perigee
-nu_LDR=5*pi/180;           % True anamoly
+nu_LDR=0*pi/180;           % True anamoly
 nu_FWR=0*pi/180;           % True anamoly
 [r_LDR, v_LDR]= orb2rv_s(p,e,i_LDR,O,o,nu_LDR,init.Earth.mu);
 [r_FWR, v_FWR]= orb2rv_s(p,e,i_FWR,O,o,nu_FWR,init.Earth.mu);

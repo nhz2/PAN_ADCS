@@ -1,7 +1,5 @@
 #VRML V2.0 utf8
 
-Viewpoint {
-}
 DEF Real Transform {
   children Transform {
     children [
@@ -1452,9 +1450,9 @@ DEF Real Transform {
         children Shape {
           appearance Appearance {
             material Material {
-              specularColor 0.5 0.5 0.5
+              specularColor 1 0 0
               shininess 0.3
-              diffuseColor 0.38 0.38 0.38
+              diffuseColor 1 0 0
               ambientIntensity 0.5
             }
           }
@@ -3118,9 +3116,9 @@ DEF Estimate Transform {
         children Shape {
           appearance Appearance {
             material Material {
-              specularColor 0.5 0.5 0.5
+              specularColor 0 0.2 1
               shininess 0.3
-              diffuseColor 0.38 0.38 0.38
+              diffuseColor 0.2 0.2 1
               ambientIntensity 0.5
             }
           }
@@ -6236,4 +6234,7 @@ DEF Command Transform {
       }
     ]
   }
+}
+Viewpoint {
+  position 10 3 40
 }
