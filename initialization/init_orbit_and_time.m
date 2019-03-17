@@ -37,11 +37,17 @@ init.sec= 0;
 Y= init.year;
 M= init.month;
 D= init.day;
+timestart= datetime(Y,M,D,init.hour,init.min,init.sec,'TimeZone','UTCLeapSeconds');
+time5yearslater= datetime(Y+5,M,D,init.hour,init.min,init.sec,'TimeZone','UTCLeapSeconds');%5 years later
+fiveyearsinsecs= seconds(timestart-time5yearslater);
 init.JD= juliandate(Y,M,D,init.hour,init.min,init.sec);
 init.GPSTime= 1213056018;
 %seconds, using https://losc.ligo.org/gps/
 init.decyear= decyear(Y,M,D);
 init.DCM_ECI2ECEF=dcmeci2ecef('IAU-2000/2006',[Y M D init.hour init.min init.sec]);
+fiveyearseci2ecefdcm=dcmeci2ecef('IAU-2000/2006',[Y+5 M D init.hour init.min init.sec]);
+polarprecessionaxis= cross((init.DCM_ECI2ECEF*fiveyearseci2ecefdcm.'*[0;0;1;]),[0;0;1;]);
+init.PRECESSION_RATE= polarprecessionaxis/fiveyearsinsecs;%radians/sec
 q0= dcm2quat(init.DCM_ECI2ECEF);
 init.q0= q0;
 %qa= dcm2quat(dcmeci2ecef('IAU-2000/2006',[Y M D mod(12+init.hour,24) init.min init.sec]));
